@@ -14,7 +14,7 @@ function createDivElement(){
 function clickHandler(){
     console.log( 'Counter button was clicked');
     clickCount++;
-    $('div').text( clickCount );
+    $('div').append($('<p>' + 'You have clicked ' + clickCount + ' times' + '</p>' ));
 }
 
 function makeButtons(){
