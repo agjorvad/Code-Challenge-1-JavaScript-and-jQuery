@@ -1,22 +1,21 @@
-let clickCount = 0;
-
+let clickCount = 0; //needs to be global variable because if it's in the function it will start at 0 each time you click it.
 
 $(document).ready(function(){
     $('#generateButton').on( 'click', createDivElement);
-    $('#generateButton').on( 'click', clickHandler);
-    $('#generateButton').on( 'click', makeButtons);
+    $('body').on('click', '.swapButton', swapColor);
+    $('body').on('click', '.deleteButton', deleteDiv);
 });
 
 function createDivElement(){
-    $('#generateButton').append($('div'));
-    console.log( 'div');
-}
-function clickHandler(){
-    console.log( 'Counter button was clicked');
     clickCount++;
-    $('div').append($('<p>' + 'You have clicked ' + clickCount + ' times' + '</p>' ));
+    let div = $('body').append($('<div class="red"><p>' + clickCount + '</p><button class="swapButton">Swap</button><button class="deleteButton">Delete</button></div>'));
 }
 
-function makeButtons(){
-    $('div').append('<button class="swapButton">Swap</button>', '<button class="deleteButton">Delete</button>' );
+function swapColor() {
+    $(this).parent().toggleClass('yellow');
+}
+
+function deleteDiv() {
+    $(this).parent().remove();
+    //could also use $(this).closest('div').remove(); It should be 'div', not '.div' because div is an element and you are deleting the closest div element (not class).
 }
